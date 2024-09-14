@@ -3,31 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Data Animations</title>
+    <title>Python Data Structures</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <h1>Python Data Structures</h1>
         <div class="button-container">
-            <button onclick="showMethods('list')">List</button>
-            <button onclick="showMethods('tuple')">Tuple</button>
-            <button onclick="showMethods('dictionary')">Dictionary</button>
-            <button onclick="showMethods('set')">Set</button>
+            <button onclick="goToMethodsOperations('list')">List</button>
+            <button onclick="goToMethodsOperations('tuple')">Tuple</button>
+            <button onclick="goToMethodsOperations('dictionary')">Dictionary</button>
+            <button onclick="goToMethodsOperations('set')">Set</button>
         </div>
-    </div>
-
-    <div id="methods" class="hidden">
-        <h2 id="dataType"></h2>
-        <div class="button-container">
-            <button onclick="showExamples('methods')">Methods</button>
-            <button onclick="showExamples('operations')">Operations</button>
-        </div>
-    </div>
-
-    <div id="examples" class="hidden">
-        <h3>Real-World Examples</h3>
-        <div id="exampleContent"></div>
     </div>
 
     <script src="script.js"></script>
