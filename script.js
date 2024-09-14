@@ -1,4 +1,4 @@
-// Define the methods and operations for each data structure
+// Data for different methods and operations for each structure
 const methodsOperations = {
     list: {
         methods: ['append', 'extend', 'pop', 'remove', 'sort'],
@@ -21,13 +21,12 @@ const methodsOperations = {
 const exampleTitle = document.getElementById('exampleTitle');
 const methodDropdown = document.getElementById('methodDropdown');
 const animateBtn = document.getElementById('animateBtn');
-const dataInput = document.getElementById('dataInput');
 const listElement = document.getElementById('list');
 const resultElement = document.getElementById('result');
 
-// Store selected data structure and option
-const dataType = localStorage.getItem('dataType') || 'list'; // Default to 'list'
-const option = localStorage.getItem('option') || 'methods'; // Default to 'methods'
+// Store selected data structure
+const dataType = localStorage.getItem('dataType');
+const option = localStorage.getItem('option');
 
 // Populate dropdown with methods/operations
 function populateDropdown() {
@@ -43,65 +42,53 @@ function populateDropdown() {
 
 // Handle example animations based on selection
 function animateExample(method) {
-    resultElement.style.opacity = 0; // Ensure opacity is reset
-
-    // Get user input and process it
-    let input = dataInput.value.trim();
-    let exampleList = input.split(',').map(item => Number(item.trim())).filter(item => !isNaN(item));
+    resultElement.classList.remove('fadeIn');
 
     // Reset content
-    listElement.innerHTML = `[${exampleList.join(', ')}]`;
+    listElement.innerHTML = '[1, 2, 3, 4]';
     resultElement.innerHTML = '';
 
+    let exampleList = [1, 2, 3, 4];
+
     // Perform actions based on selected method/operation
-    setTimeout(() => {
-        switch (method) {
-            case 'append':
-                exampleList.push(5);
-                listElement.innerHTML = `[${exampleList.join(', ')}]`;
-                resultElement.innerHTML = `Appended 5: [${exampleList.join(', ')}]`;
-                break;
-            case 'extend':
-                exampleList.push(5, 6);
-                listElement.innerHTML = `[${exampleList.join(', ')}]`;
-                resultElement.innerHTML = `Extended by [5, 6]: [${exampleList.join(', ')}]`;
-                break;
-            case 'pop':
-                exampleList.pop();
-                listElement.innerHTML = `[${exampleList.join(', ')}]`;
-                resultElement.innerHTML = `Popped last element: [${exampleList.join(', ')}]`;
-                break;
-            case 'remove':
-                exampleList = exampleList.filter(num => num !== 3);
-                listElement.innerHTML = `[${exampleList.join(', ')}]`;
-                resultElement.innerHTML = `Removed 3: [${exampleList.join(', ')}]`;
-                break;
-            case 'sort':
-                exampleList.sort((a, b) => a - b);
-                listElement.innerHTML = `[${exampleList.join(', ')}]`;
-                resultElement.innerHTML = `Sorted list: [${exampleList.join(', ')}]`;
-                break;
-            case 'slicing':
-                const slicedList = exampleList.slice(0, 3);
-                listElement.innerHTML = `[${slicedList.join(', ')}]`;
-                resultElement.innerHTML = `Sliced (first 3): [${slicedList.join(', ')}]`;
-                break;
-            case 'concatenation':
-                exampleList = exampleList.concat([5, 6]);
-                listElement.innerHTML = `[${exampleList.join(', ')}]`;
-                resultElement.innerHTML = `Concatenated: [${exampleList.join(', ')}]`;
-                break;
-            case 'repetition':
-                exampleList = exampleList.concat(exampleList);
-                listElement.innerHTML = `[${exampleList.join(', ')}]`;
-                resultElement.innerHTML = `Repetition: [${exampleList.join(', ')}]`;
-                break;
-            // Additional methods and operations for tuple, dictionary, and set
-            default:
-                resultElement.innerHTML = 'Selected method/operation not implemented.';
-        }
-        resultElement.style.opacity = 1; // Fade in effect
-    }, 500); // Delay for animation effect
+    switch (method) {
+        case 'append':
+            exampleList.push(5);
+            setTimeout(() => resultElement.innerHTML = `Appended 5: [${exampleList.join(', ')}]`, 1000);
+            break;
+        case 'extend':
+            exampleList.push(5, 6);
+            setTimeout(() => resultElement.innerHTML = `Extended by [5, 6]: [${exampleList.join(', ')}]`, 1000);
+            break;
+        case 'pop':
+            exampleList.pop();
+            setTimeout(() => resultElement.innerHTML = `Popped last element: [${exampleList.join(', ')}]`, 1000);
+            break;
+        case 'remove':
+            exampleList = exampleList.filter(num => num !== 3);
+            setTimeout(() => resultElement.innerHTML = `Removed 3: [${exampleList.join(', ')}]`, 1000);
+            break;
+        case 'sort':
+            exampleList = [4, 2, 3, 1];
+            exampleList.sort();
+            setTimeout(() => resultElement.innerHTML = `Sorted list: [${exampleList.join(', ')}]`, 1000);
+            break;
+        case 'slicing':
+            const slicedList = exampleList.slice(0, 3);
+            setTimeout(() => resultElement.innerHTML = `Sliced (first 3): [${slicedList.join(', ')}]`, 1000);
+            break;
+        case 'concatenation':
+            exampleList = exampleList.concat([5, 6]);
+            setTimeout(() => resultElement.innerHTML = `Concatenated: [${exampleList.join(', ')}]`, 1000);
+            break;
+        case 'repetition':
+            exampleList = [1, 2, 3].concat([1, 2, 3]);
+            setTimeout(() => resultElement.innerHTML = `Repetition: [${exampleList.join(', ')}]`, 1000);
+            break;
+        // Add cases for other data structures as necessary
+    }
+
+    resultElement.classList.add('fadeIn');
 }
 
 // Set initial values based on data type and option
