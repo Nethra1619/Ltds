@@ -2,6 +2,7 @@
 let selectedDataType = '';
 
 function goToMethodsOperations(dataType) {
+    // Store the selected data type in local storage
     selectedDataType = dataType;
     localStorage.setItem('dataType', dataType);
     window.location.href = 'methods_operations.html';
@@ -28,22 +29,23 @@ if (window.location.pathname.includes('examples.html')) {
 
     exampleTitle.innerText = `${dataType.charAt(0).toUpperCase() + dataType.slice(1)} - ${option.charAt(0).toUpperCase() + option.slice(1)} Example`;
 
+    // Display examples based on the dataType and option selected
     if (dataType === 'list') {
         if (option === 'methods') {
             exampleContent.innerHTML = `
                 <h4>List Methods</h4>
                 <p>Example: list.append()</p>
-                <p>Animating list.append(5)...</p>
+                <p>Animating: list.append(5)</p>
                 <div>[1, 2, 3, 4, 5]</div>
             `;
         } else {
             exampleContent.innerHTML = `
                 <h4>List Operations</h4>
                 <p>Example: list slicing</p>
-                <p>Animating slicing list[:3]...</p>
+                <p>Animating: list[:3]</p>
                 <div>[1, 2, 3]</div>
             `;
         }
     }
-    // Add more examples for Tuple, Dictionary, Set...
+    // Similarly, add examples for tuple, dictionary, and set
 }
