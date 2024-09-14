@@ -1,45 +1,49 @@
-function showMethods(dataType) {
-    document.getElementById('methods').classList.remove('hidden');
-    document.getElementById('dataType').innerText = dataType.charAt(0).toUpperCase() + dataType.slice(1);
-    document.getElementById('examples').classList.add('hidden');
+// Store the selected data type globally
+let selectedDataType = '';
+
+function goToMethodsOperations(dataType) {
+    selectedDataType = dataType;
+    localStorage.setItem('dataType', dataType);
+    window.location.href = 'methods_operations.html';
 }
 
-function showExamples(type) {
+function goToExamples(option) {
+    const dataType = localStorage.getItem('dataType');
+    localStorage.setItem('option', option);
+    window.location.href = 'examples.html';
+}
+
+// For methods_operations.html - Set the selected data type on page load
+if (window.location.pathname.includes('methods_operations.html')) {
+    const dataType = localStorage.getItem('dataType');
+    document.getElementById('dataType').innerText = `Selected: ${dataType.charAt(0).toUpperCase() + dataType.slice(1)}`;
+}
+
+// For examples.html - Show the appropriate example based on user choice
+if (window.location.pathname.includes('examples.html')) {
+    const dataType = localStorage.getItem('dataType');
+    const option = localStorage.getItem('option');
+    const exampleTitle = document.getElementById('exampleTitle');
     const exampleContent = document.getElementById('exampleContent');
-    exampleContent.innerHTML = '';
-    
-    if (type === 'methods') {
-        if (document.getElementById('dataType').innerText === 'List') {
+
+    exampleTitle.innerText = `${dataType.charAt(0).toUpperCase() + dataType.slice(1)} - ${option.charAt(0).toUpperCase() + option.slice(1)} Example`;
+
+    if (dataType === 'list') {
+        if (option === 'methods') {
             exampleContent.innerHTML = `
                 <h4>List Methods</h4>
-                <p>append(), extend(), pop(), remove(), etc.</p>
-                <div class="exampleAnimation">Animating list.append()...</div>
+                <p>Example: list.append()</p>
+                <p>Animating list.append(5)...</p>
+                <div>[1, 2, 3, 4, 5]</div>
             `;
-            animateExample('list');
-        }
-        // Add cases for Tuple, Dictionary, Set methods
-    } else if (type === 'operations') {
-        if (document.getElementById('dataType').innerText === 'List') {
+        } else {
             exampleContent.innerHTML = `
                 <h4>List Operations</h4>
-                <p>Concatenation, Slicing, etc.</p>
-                <div class="exampleAnimation">Animating list slicing...</div>
+                <p>Example: list slicing</p>
+                <p>Animating slicing list[:3]...</p>
+                <div>[1, 2, 3]</div>
             `;
-            animateExample('list');
         }
-        // Add cases for Tuple, Dictionary, Set operations
     }
-
-    document.getElementById('examples').classList.remove('hidden');
-}
-
-function animateExample(dataType) {
-    const animationDiv = document.querySelector('.exampleAnimation');
-    if (dataType === 'list') {
-        animationDiv.innerText = 'Appending 5 to list...';
-        setTimeout(() => {
-            animationDiv.innerText = '[1, 2, 3, 4, 5]';
-        }, 2000);
-    }
-    // More animations for Tuple, Dictionary, Set
+    // Add more examples for Tuple, Dictionary, Set...
 }
