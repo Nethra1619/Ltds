@@ -30,10 +30,6 @@ button {
     display: none;
 }
 
-#methods, #examples {
-    margin-top: 20px;
-}
-
 .exampleAnimation {
     font-size: 18px;
     color: #ff5722;
@@ -44,4 +40,3 @@ button {
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
-}
