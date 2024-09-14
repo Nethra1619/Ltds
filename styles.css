@@ -14,10 +14,23 @@ body {
     padding: 20px;
     background: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 h1, h3 {
     margin-bottom: 20px;
+}
+
+.input-container {
+    margin: 20px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 10px;
 }
 
 .list-container {
@@ -49,8 +62,4 @@ button {
 
 button:hover {
     background-color: #0056b3;
-}
-
-.fadeIn {
-    opacity: 1;
 }
